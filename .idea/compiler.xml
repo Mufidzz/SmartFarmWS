@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SmartFarm-WebServer" target="1.5" />
+      <module name="SmartFarm-WebServer" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
