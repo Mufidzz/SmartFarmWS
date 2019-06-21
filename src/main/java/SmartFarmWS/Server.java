@@ -1,8 +1,6 @@
 package SmartFarmWS;
 
 import spark.Filter;
-import spark.Request;
-import spark.Response;
 import spark.Spark;
 
 public class Server {

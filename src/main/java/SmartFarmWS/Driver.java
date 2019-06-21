@@ -1,6 +1,5 @@
 package SmartFarmWS;
 
-
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
@@ -10,6 +9,7 @@ public class Driver {
 
     public static void main(String[] args) {
         proops = new Properties();
+
 
         if (args.length > 0) {
             proopsLoad(proops,args[0]);
@@ -24,10 +24,9 @@ public class Driver {
         int timeOut = Integer.parseInt(proops.getProperty("server.timeout","20000"));
 
         new Server(port,minThreads,maxThreads,timeOut);
-
     }
     
-    public static void proopsLoad(Properties proop, String filename){
+    private static void proopsLoad(Properties proop, String filename){
         InputStream input = null;
 
         try {
