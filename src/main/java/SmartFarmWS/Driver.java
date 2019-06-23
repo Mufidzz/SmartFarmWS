@@ -1,13 +1,16 @@
 package SmartFarmWS;
 
+import SmartFarmWS.gateway.Device;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class Driver {
     public static Properties proops;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         proops = new Properties();
 
 
