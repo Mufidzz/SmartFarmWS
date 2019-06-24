@@ -127,7 +127,7 @@ public class User extends SmartFarmWS.object.User {
     @Override
     public boolean login(String username, String password) {
         this.username = username;
-        this.password = password
+        this.password = password;
         try {
             String query = "SELECT * FROM `user` WHERE `username` = ? AND `password` = ?";
             this.stmt = conn.prepareStatement(query);
