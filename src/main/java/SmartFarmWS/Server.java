@@ -1,16 +1,20 @@
 package SmartFarmWS;
 
+import SmartFarmWS.gateway.Router;
 import spark.Filter;
 import spark.Spark;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Server {
+    public static Map<String ,String> session;
+
     public Server(int port, int minThreads, int maxThreads, int timeOut){
         Spark.port(port);
         Spark.threadPool(maxThreads, minThreads, timeOut);
 
-        Spark.get("/", (req,res) -> "Coba");
+        new Router();
         apply();
-
     }
 
     public final static void apply(){

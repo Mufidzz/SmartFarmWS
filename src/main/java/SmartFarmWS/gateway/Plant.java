@@ -6,6 +6,7 @@ import java.lang.reflect.MalformedParametersException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Plant extends SmartFarmWS.object.Plant {
     private Connection conn;
@@ -142,7 +143,18 @@ public class Plant extends SmartFarmWS.object.Plant {
 
 
     @Override
-    public ResultSet deletePlant(String user_uploader, String plant_signature) {
-        return null;
+    public int deletePlant(String user, String plant_signature) throws SQLException {
+        readPlant(plant_signature);
+        if(user.equals(this.rs.getString("user_uploader"))) {
+            try {
+                String query = "DELETE FROM `plant` WHERE `plant`.`plant_signature` = ?";
+                this.stmt = conn.prepareStatement(query);
+                this.stmt.setString(1, this.plant_signature);
+                return stmt.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 }

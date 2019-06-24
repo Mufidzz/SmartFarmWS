@@ -13,6 +13,10 @@ public class User extends SmartFarmWS.object.User {
     private ResultSet rs;
     private int affectedRows;
 
+    public static String EMAIL = "USER.EMAIL";
+    public static String NAME = "USER.NAME";
+
+
     User(){
         this.conn = Database.dbConnect();
     }
