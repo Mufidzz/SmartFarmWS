@@ -20,7 +20,7 @@ public class Router {
 
             Spark.put("/email", (request, response) -> {
                 this.reqJSON = new JSONObject(request.body());
-                return new User().updateUser(User.EMAIL,this.reqJSON.getString("email"));
+                return new User().updateUser(U,this.reqJSON.getString("email"));
             });
 
             Spark.put("/name", (request, response) -> {
