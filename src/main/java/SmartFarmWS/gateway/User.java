@@ -11,7 +11,7 @@ public class User extends SmartFarmWS.object.User {
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet rs;
-    private int affectedRows;
+    private int affectedRows=0;
 
     public static String EMAIL = "USER.EMAIL";
     public static String NAME = "USER.NAME";
@@ -136,9 +136,13 @@ public class User extends SmartFarmWS.object.User {
             String query = "SELECT * FROM `user` WHERE `username` = ? AND `password` = ?";
             this.stmt = conn.prepareStatement(query);
             this.stmt.setString(1, this.username);
-            this.stmt.setString(1, this.password);
+            this.stmt.setString(2, this.password);
             this.rs = stmt.executeQuery();
-            if (this.rs.getFetchSize()>0) return true;
+            while (this.rs.next()){
+                this.affectedRows++;
+            }
+            System.out.println(affectedRows);
+            if (this.affectedRows > 0) return true;
         } catch (Exception e){
             e.printStackTrace();
         }

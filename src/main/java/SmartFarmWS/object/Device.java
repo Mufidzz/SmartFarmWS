@@ -15,6 +15,7 @@ public abstract class Device {
     public String device_signature;
 
     public abstract int addDevice(String username, int plant_id, String device_type, String device_signature);
+    public abstract int updateDeviceLight(String value, String device_signature, String username) throws SQLException;
     public abstract ResultSet readDevice();
     public abstract ResultSet readDevice(String username);
     public abstract ResultSet readDevice(String username, String device_signature);

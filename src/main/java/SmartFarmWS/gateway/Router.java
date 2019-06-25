@@ -20,7 +20,7 @@ public class Router {
 
             Spark.put("/email", (request, response) -> {
                 this.reqJSON = new JSONObject(request.body());
-                return new User().updateUser(U,this.reqJSON.getString("email"));
+                return new User().updateUser(User.EMAIL,this.reqJSON.getString("email"));
             });
 
             Spark.put("/name", (request, response) -> {
@@ -70,11 +70,12 @@ public class Router {
 
             Spark.post("/login", (request, response) -> {
                 this.reqJSON =new JSONObject(request.body());
-                if(new User().login(reqJSON.getString("username"), "password")){
-                    Server.session.put("user", reqJSON.getString("user"));
+                if(new User().login(reqJSON.getString("username"), reqJSON.getString("password"))){
+                    Server.session.put("user", reqJSON.getString("username"));
                     return 1;
+                } else {
+                    return 0;
                 }
-                return 0;
             });
         });
 

@@ -143,17 +143,21 @@ public class Plant extends SmartFarmWS.object.Plant {
 
 
     @Override
-    public int deletePlant(String user, String plant_signature) throws SQLException {
-        readPlant(plant_signature);
-        if(user.equals(this.rs.getString("user_uploader"))) {
-            try {
-                String query = "DELETE FROM `plant` WHERE `plant`.`plant_signature` = ?";
-                this.stmt = conn.prepareStatement(query);
-                this.stmt.setString(1, this.plant_signature);
-                return stmt.executeUpdate();
-            } catch (Exception e) {
-                e.printStackTrace();
+    public int deletePlant(String user, String plant_signature){
+        try {
+            readPlant(plant_signature);
+            if (user.equals(this.rs.getString("user_uploader"))) {
+                try {
+                    String query = "DELETE FROM `plant` WHERE `plant`.`plant_signature` = ?";
+                    this.stmt = conn.prepareStatement(query);
+                    this.stmt.setString(1, this.plant_signature);
+                    return stmt.executeUpdate();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return 0;
     }
